@@ -1,9 +1,9 @@
 
 import React from "react";
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import axios from 'axios';
-import { useParams , Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function MovieSelect(){
     
@@ -25,7 +25,7 @@ export default function MovieSelect(){
    
     return(
         <>
-            <Text/>
+            <Text>Selecione o filme</Text>
             <ContainerPosters>
             {movies.map((movie) => (
                 <Link to={`/sessoes/${movie.id}`}>
@@ -43,7 +43,7 @@ const ContainerPosters = styled.div`
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin-top: 90px;
+    margin-top: 10px;
 `
 
 const PosterBox = styled.div`
@@ -62,7 +62,12 @@ const Poster = styled.img`
     height: 193px;;
 ` ;
 
-const Text = styled.div`
+const Text = styled.h1`
+    color:#293845;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 80px;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
