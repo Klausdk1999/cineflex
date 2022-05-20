@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useParams , Link } from "react-router-dom";
 import React, { useEffect } from 'react';
-import Times from './Times';
 import Chair from './Chair';
+import Forms from './Forms';
 
 export default function ChairSelect({idSessao}){
     let params = useParams();
@@ -46,17 +46,151 @@ export default function ChairSelect({idSessao}){
                 <Chair object={seat} selected={isSelected[seat.id+1]} selectChair={selectChair} key={seat.id}/>
             ))}
         </ContainerChairs>
-        
+        <ChairInfos>
+            <Column>
+                <GreenBall></GreenBall>
+                <h3>Selecionado</h3> 
+            </Column>
+            <Column>
+                 <GreyBall></GreyBall>
+                 <h3>Disponível</h3> 
+            </Column>
+            <Column>
+                 <YellowBall></YellowBall>
+                 <h3>Indisponível</h3> 
+            </Column>
+        </ChairInfos>
+        <Forms/>
+        <Footer>
+            <PosterBox >
+                <Poster id={chairs.movie.id} src={chairs.movie.posterURL} alt={chairs.movie.title}/>
+            </PosterBox>
+            <TextDate> {chairs.movie.title} <br/>{chairs.day.weekday} - {chairs.name}</TextDate>
+        </Footer>
         </>
     )
 }
+
+const ChairInfos = styled.div`
+    
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+`
+
+const GreenBall= styled.div`
+    width: 26px;
+    height: 26px;
+    box-sizing: border-box;
+    border: 1px solid #1AAE9E;
+    border-radius: 12px;
+    background: #8DD7CF;
+`
+
+const GreyBall= styled.div`
+    
+    width: 26px;
+    height: 26px;
+    box-sizing: border-box;
+    background: #C3CFD9;
+    border-radius: 12px;
+    border: 1px solid #7B8B99;
+`
+    
+
+const YellowBall= styled.div`
+    
+    width: 26px;
+    height: 26px;
+    box-sizing: border-box;
+    border: 1px solid #F7C52B;
+    border-radius: 12px;
+    background: #FBE192;
+
+`
+
+const Column = styled.div`
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h3{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.013em;
+    margin-top: 5px;
+    color: #4E5A65;
+    }
+`
+
+const PosterBox = styled.div`
+    width: 64px;
+    height:89px;;
+    box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:10px;
+    background: #ffffff;
+` ;
+
+const TextDate =styled.h1`
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.02em;
+    color: #293845;
+`
+
+const Poster = styled.img`
+    width:48px;
+    height: 72px;
+` 
+
+const Footer = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #DFE6ED;
+    border: 1px solid #9EADBA;
+    position: fixed;
+    left:0;
+    bottom:0;
+    height: 117px;
+    
+    h1{
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 26px;
+        line-height: 30px;
+        display: flex;
+        align-items: center;
+        color: #293845;
+    }
+` ;
+
 
 const ContainerChairs = styled.div`
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     margin-top: 10px;
-    margin: 10px;
+    margin: 20px;
 `
 
 const Text = styled.h1`
@@ -74,9 +208,3 @@ const Text = styled.h1`
     letter-spacing: 0.04em;
 ` ;
 
-const OrangeBoxes = styled.div`
-    display: flex;
-    flex-direction:row;
-    align-items: center;
-    justify-content: center;
-`

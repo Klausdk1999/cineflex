@@ -16,8 +16,8 @@ export default function App(){
                 <Route path="/sessoes/:id" element={<TimeSelect/>} />
                 <Route path="/assentos/:idSessao" element={<ChairSelect/>} />
                 {/* 
-                
-                <Route path="/sucesso" element={<Success/>} /> */}
+                <Route path="/sucesso" element={<Success/>} />
+                 */}
             </Routes>
         </BrowserRouter>
 

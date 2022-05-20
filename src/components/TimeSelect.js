@@ -55,13 +55,13 @@ const Footer = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    margin:10px;
     background: #DFE6ED;
     border: 1px solid #9EADBA;
     position: fixed;
     left:0;
     bottom:0;
     height: 117px;
+    justify-content: center;
     h1{
         font-family: 'Roboto';
         font-style: normal;
@@ -115,7 +115,7 @@ const Container= styled.div`
     align-items: center;
     flex-wrap: wrap;
     margin-top: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 125px;
 `
 
 const PosterBox = styled.div`
