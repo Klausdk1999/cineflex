@@ -8,9 +8,11 @@ export default function Times({showtimes}){
     return( 
         <>
             {showtimes.map((showtime) => (
-                <Container id ={showtime.id}>
-                    <Text>{showtime.name}</Text>
-                </Container>
+                <Link key={showtime.id} to={`/assentos/${showtime.id}`}>
+                    <Container id ={showtime.id} >
+                        <Text>{showtime.name}</Text>
+                    </Container>
+                </Link>
             ))}
         </>
     );

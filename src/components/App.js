@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import MovieSelect from "./MovieSelect";
 import TimeSelect from "./TimeSelect";
+import ChairSelect from "./ChairSelect";
 import SessionSelect from "./TimeSelect";
 import Success from "./Success";
 
@@ -13,8 +14,9 @@ export default function App(){
             <Routes>
                 <Route path="/" element={<MovieSelect/>} />
                 <Route path="/sessoes/:id" element={<TimeSelect/>} />
+                <Route path="/assentos/:idSessao" element={<ChairSelect/>} />
                 {/* 
-                <Route path="/sessao:id" element={<SessionSelect/>} />
+                
                 <Route path="/sucesso" element={<Success/>} /> */}
             </Routes>
         </BrowserRouter>

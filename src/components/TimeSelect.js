@@ -32,7 +32,7 @@ export default function MovieSelect({id}){
             <Container>
             {sessions.days.map((session) => (
                 <>
-                    <TextDate>
+                    <TextDate id={session.id}>
                         {session.weekday} - {session.date}
                     </TextDate>
                     <OrangeBoxes>
@@ -55,7 +55,7 @@ const Footer = styled.div`
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    margin:10px;
     background: #DFE6ED;
     border: 1px solid #9EADBA;
     position: fixed;

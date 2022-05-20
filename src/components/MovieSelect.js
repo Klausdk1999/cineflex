@@ -27,10 +27,10 @@ export default function MovieSelect(){
         <>
             <Text>Selecione o filme</Text>
             <ContainerPosters>
-            {movies.map((movie) => (
-                <Link to={`/sessoes/${movie.id}`}>
+            {movies.map((movie,index) => (
+                <Link key={index} to={`/sessoes/${movie.id}`}>
                     <PosterBox >
-                        <Poster id={movie.id} src={movie.posterURL} alt={movie.title}/>
+                        <Poster  id={movie.id} src={movie.posterURL} alt={movie.title}/>
                     </PosterBox>
                 </Link>
             ))}
