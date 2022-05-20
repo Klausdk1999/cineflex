@@ -39,11 +39,11 @@ const ChairState = styled.div`
     border: 1px solid ${props => props.border};
     border-radius: 12px;
     background-color:${props => props.color};
-    margin:7px;
+    margin:4px;
     display: flex;
     align-items: center;
     justify-content: center;
-
+    margin-top: 10px;
     h1{
         font-family: 'Roboto';
         font-style: normal;

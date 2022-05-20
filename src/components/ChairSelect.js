@@ -43,12 +43,10 @@ export default function ChairSelect({idSessao}){
         <Text>Selecione o(s) assento(s)</Text>
         <ContainerChairs>
             {chairs.seats.map((seat) => (
-                
                 <Chair object={seat} selected={isSelected[seat.id+1]} selectChair={selectChair} key={seat.id}/>
-
             ))}
         </ContainerChairs>
-       
+        
         </>
     )
 }
