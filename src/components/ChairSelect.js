@@ -16,10 +16,23 @@ export default function ChairSelect({idSessao}){
 
 		promise.then(resposta => {
 			setChairs(resposta.data);
-            console.log(chairs);
+            let arr=[];
+            for(let i=0;i<resposta.data.seats.length+1;i++){
+                arr.push(false);
+            }
+            setIsSelected(arr);
         });
 
 	}, []);
+
+    const [isSelected, setIsSelected] = React.useState([false]);
+
+    function selectChair(id){
+        
+        let newStates=[...isSelected];
+        newStates[id]=true;
+        setIsSelected(newStates);
+    }
 
 	if(chairs.length ===  0) {
 		return (<h1>Loading...</h1>);
@@ -31,7 +44,7 @@ export default function ChairSelect({idSessao}){
         <ContainerChairs>
             {chairs.seats.map((seat) => (
                 
-                <Chair key={seat.id} object={seat} />
+                <Chair object={seat} selected={isSelected[seat.id+1]} selectChair={selectChair} key={seat.id}/>
 
             ))}
         </ContainerChairs>

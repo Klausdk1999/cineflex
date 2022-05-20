@@ -3,7 +3,7 @@ import { useParams , Link } from "react-router-dom";
 import React, { useEffect } from 'react';
 
 
-export default function Card({ object,selected, key}) { 
+export default function Card({ object,selected,selectChair}) { 
 
     let color="#C3CFD9";
     let border="#808F9D";
@@ -23,13 +23,16 @@ export default function Card({ object,selected, key}) {
     
     return(
         <>
-            <ChairState color={color} border={border}> <h1>{object.name}</h1> </ChairState>
+            <ChairState onClick={()=>{if(object.isAvailable){selectChair(object.id+1)}}} color={color} border={border}>
+                <h1>{object.name}</h1> 
+            </ChairState>
         </>
     );
-    //}
+    
 }
 
 const ChairState = styled.div`
+    cursor: pointer;
     width: 26px;
     height: 26px;
     box-sizing: border-box;
