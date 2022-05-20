@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 export default function MovieSelect(){
     
-
     const [movies, setMovies] = React.useState([]);
 
 	useEffect(() => {

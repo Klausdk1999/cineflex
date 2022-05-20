@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import axios from 'axios';
-import { useParams , Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import React, { useEffect } from 'react';
 import Chair from './Chair';
 import Forms from './Forms';
@@ -25,12 +25,17 @@ export default function ChairSelect({idSessao}){
 
 	}, []);
 
-    const [isSelected, setIsSelected] = React.useState([false]);
+    const [isSelected, setIsSelected] = React.useState([]);
+    const [ids, setIds] = React.useState([]);
 
     function selectChair(id){
-        
+        let newids=[...ids];
+        newids.push(id);
+        setIds(newids);
+        console.log("ids: "+ ids);
+
         let newStates=[...isSelected];
-        newStates[id]=true;
+        newStates[id+1]=true;
         setIsSelected(newStates);
     }
 
@@ -43,7 +48,7 @@ export default function ChairSelect({idSessao}){
         <Text>Selecione o(s) assento(s)</Text>
         <ContainerChairs>
             {chairs.seats.map((seat) => (
-                <Chair object={seat} selected={isSelected[seat.id+1]} selectChair={selectChair} key={seat.id}/>
+                <Chair object={seat} selected={isSelected[seat.id+1]}  selectChair={selectChair} idCadeira={seat.id} key={seat.id}/>
             ))}
         </ContainerChairs>
         <ChairInfos>
@@ -60,7 +65,7 @@ export default function ChairSelect({idSessao}){
                  <h3>Indisponível</h3> 
             </Column>
         </ChairInfos>
-        <Forms/>
+        <Forms ids={ids} isSelected={isSelected}/>
         <Footer>
             <PosterBox >
                 <Poster id={chairs.movie.id} src={chairs.movie.posterURL} alt={chairs.movie.title}/>
@@ -68,11 +73,10 @@ export default function ChairSelect({idSessao}){
             <TextDate> {chairs.movie.title} <br/>{chairs.day.weekday} - {chairs.name}</TextDate>
         </Footer>
         </>
-    )
+    );
 }
 
 const ChairInfos = styled.div`
-    
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -101,7 +105,6 @@ const GreyBall= styled.div`
     
 
 const YellowBall= styled.div`
-    
     width: 26px;
     height: 26px;
     box-sizing: border-box;
@@ -141,7 +144,7 @@ const PosterBox = styled.div`
     justify-content: center;
     margin:10px;
     background: #ffffff;
-` ;
+`
 
 const TextDate =styled.h1`
     font-family: 'Roboto';
@@ -182,8 +185,7 @@ const Footer = styled.div`
         align-items: center;
         color: #293845;
     }
-` ;
-
+` 
 
 const ContainerChairs = styled.div`
     display: flex;
@@ -206,5 +208,5 @@ const Text = styled.h1`
     font-size: 24px;
     line-height: 28px;
     letter-spacing: 0.04em;
-` ;
+` 
 

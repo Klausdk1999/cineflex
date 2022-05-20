@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { useParams , Link } from "react-router-dom";
-import React, { useEffect } from 'react';
+import React from 'react';
 
 
-export default function Card({ object,selected,selectChair}) { 
+export default function Card({ object,selected,selectChair,idCadeira}) { 
 
     let color="#C3CFD9";
     let border="#808F9D";
@@ -23,12 +22,11 @@ export default function Card({ object,selected,selectChair}) {
     
     return(
         <>
-            <ChairState onClick={()=>{if(object.isAvailable){selectChair(object.id+1)}}} color={color} border={border}>
+            <ChairState onClick={()=>{if(object.isAvailable){selectChair(idCadeira)}}} color={color} border={border}>
                 <h1>{object.name}</h1> 
             </ChairState>
         </>
     );
-    
 }
 
 const ChairState = styled.div`

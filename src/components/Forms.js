@@ -1,19 +1,32 @@
 import { useState } from "react";
 import styled from "styled-components";
+import axios from 'axios';
 
-export default function ContactForm() {
+export default function ContactForm({ids, isSelected}) {
 
   const [name, setName] = useState("");
   const [CPF, setCPF] = useState("");
 
   function submitData(event) {
     event.preventDefault();
-    alert("Mensagem enviada com sucesso!");
-    setName("");
-    setCPF("");
-  }
 
- 
+    let postObject={
+        ids: ids,
+        name: name,
+        cpf: CPF
+    };
+
+    console.log(postObject);
+
+    const promise=axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",postObject);
+
+    promise.then(resposta => {
+        console.log(resposta);
+        alert("Mensagem enviada com sucesso!");
+        setName("");
+        setCPF("");
+    });
+  }
 
   return (
     
@@ -42,40 +55,10 @@ export default function ContactForm() {
     </FormsContainer>
     
   );
-//   return (
-//     <>
-//       <form onSubmit={submitData}>
-//         <FormsContainer>
-//           <Container>
-//             <label htmlFor="nome">Nome do comprador</label>
-//             <input
-//               type="text"
-//               id="nome"
-//               value={name}
-//               required
-//               onChange={(e) => setName(e.target.value)}
-//             />
-//           </Container>
-//           <Container>
-//             <label htmlFor="CPF">CPF do comprador</label>
-//             <input
-//               type="CPF"
-//               id="CPF"
-//               value={CPF}
-//               required
-//               onChange={(e) => setCPF(e.target.value)}
-//             />
-//           </Container>
-          
-//             <OrangeBox type="submit">Reservar assento(s)</OrangeBox>
-          
-//         </FormsContainer>
-//       </form>
-//     </>
-//   );
 }
 
 const OrangeBox= styled.button`
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
