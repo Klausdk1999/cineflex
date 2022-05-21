@@ -93,8 +93,11 @@ const OrangeBoxes = styled.div`
     flex-direction:row;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
+    a{
+        text-decoration: none;
+    }
 `
-
 const TextDate =styled.h1`
     font-family: 'Roboto';
     font-style: normal;

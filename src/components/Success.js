@@ -7,25 +7,49 @@ export default function Success(){
     const {state} = useLocation();
     const {name ,cpf, title , date ,time, chairs} = state; // Read values passed on state
 
+
+    
     return( 
+        <>
+        
         <Container>
-            <Text> Pedido feito com sucesso! </Text> 
+            <Text> Pedido feito <br></br> com sucesso! </Text> 
+        </Container>
+        <SuccessLabel>
+            <LabelItem></LabelItem>
             <Bold> Filme e sessão </Bold>
             <TextBasic> {title} <br></br> {date} {time}  </TextBasic>
+            <LabelItem></LabelItem>
             <Bold> Ingressos </Bold>
-            {chairs.map((seat) => (
-               <TextBasic> Assento {seat} </TextBasic>
-            ))}
+                {chairs.map((seat) => (
+                <TextBasic> Assento {seat} </TextBasic>
+                ))}
+            <LabelItem></LabelItem>
             <Bold> Comprador </Bold>
-            <TextBasic> Nome: {name} <br></br> CPF: {cpf} </TextBasic>
+            <TextBasic> Nome: {name} <br></br> CPF: {cpf[0]+cpf[1]+cpf[2]+'.'+cpf[3]+cpf[4]+cpf[5]+'.'+cpf[6]+cpf[7]+cpf[8]+'-'+cpf[9]+cpf[10]} </TextBasic>
+            
+        </SuccessLabel>
+        
+        <Container>
             <Link style={{ textDecoration: 'none' }} to={`/`}>
                 <OrangeBox>
                     Voltar pra Home
-                </OrangeBox>
+                </OrangeBox>    
             </Link>
         </Container>
+        </>
     );
 }
+const SuccessLabel = styled.div`
+    margin-left: 29px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`
+const LabelItem = styled.div`
+    margin-bottom: 35px;
+`
 
 const Container = styled.div`
     display: flex;
@@ -89,7 +113,7 @@ const Bold= styled.h1`
     font-size: 24px;
     line-height: 28px;
     display: flex;
-    
+    margin-bottom: 8px;
     letter-spacing: 0.04em;
     color: #293845;
 `
