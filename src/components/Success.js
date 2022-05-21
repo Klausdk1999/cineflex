@@ -6,8 +6,6 @@ export default function Success(){
 
     const {state} = useLocation();
     const {name ,cpf, title , date ,time, chairs} = state; // Read values passed on state
-
-
     
     return( 
         <>
@@ -26,8 +24,8 @@ export default function Success(){
                 ))}
             <LabelItem></LabelItem>
             <Bold> Comprador </Bold>
-            <TextBasic> Nome: {name} <br></br> CPF: {cpf[0]+cpf[1]+cpf[2]+'.'+cpf[3]+cpf[4]+cpf[5]+'.'+cpf[6]+cpf[7]+cpf[8]+'-'+cpf[9]+cpf[10]} </TextBasic>
-            
+            <TextBasic> Nome: {name} <br></br> CPF: {cpf} </TextBasic>
+            {/* [0]+cpf[1]+cpf[2]+'.'+cpf[3]+cpf[4]+cpf[5]+'.'+cpf[6]+cpf[7]+cpf[8]+'-'+cpf[9]+cpf[10] */}
         </SuccessLabel>
         
         <Container>

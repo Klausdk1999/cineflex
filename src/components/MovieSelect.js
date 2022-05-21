@@ -27,7 +27,7 @@ export default function MovieSelect(){
             <Text>Selecione o filme</Text>
             <ContainerPosters>
             {movies.map((movie,index) => (
-                <Link style={{ textDecoration: 'none' }} key={index} to={`/sessoes/${movie.id}`}>
+                <Link key={index} style={{ textDecoration: 'none' }} to={`/sessoes/${movie.id}`}>
                     <PosterBox >
                         <Poster  id={movie.id} src={movie.posterURL} alt={movie.title}/>
                     </PosterBox>

@@ -25,25 +25,26 @@ export default function ChairSelect(){
 
     const [ids, setIds] = React.useState([]);
     const [chairnames, setChairnames] = React.useState([]);
-    
-    function Chairnames(element){
-        for(let i=0;i<chairs.seats.length;i++){
-            if(chairs.seats[i].id===element){
-                setChairnames([...chairnames, (i+1)]);
-            }
-        }    
-    }
 
     function selectChair(id){
-        Chairnames(id);
         let newids=[...ids];
+        let newnames=[...chairnames];
         for(let i=0;i<newids.length;i++){
             if(newids[i]===id){
+                newnames.splice(i);
+                setChairnames(newnames);
                 newids.splice(i);
                 setIds(newids);
                 return;
             }
         }
+
+        for(let i=0;i<chairs.seats.length;i++){
+            if(chairs.seats[i].id===id){
+                setChairnames([...chairnames, (i+1)]);
+            }
+        } 
+
         newids.push(id);
         setIds(newids);
     }
