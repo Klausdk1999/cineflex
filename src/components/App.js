@@ -4,7 +4,6 @@ import Header from "./Header";
 import MovieSelect from "./MovieSelect";
 import TimeSelect from "./TimeSelect";
 import ChairSelect from "./ChairSelect";
-import SessionSelect from "./TimeSelect";
 import Success from "./Success";
 
 export default function App(){

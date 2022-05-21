@@ -5,9 +5,8 @@ import React, { useEffect } from 'react';
 import Chair from './Chair';
 import Forms from './Forms';
 
-export default function ChairSelect({idSessao}){
-    let params = useParams();
-    console.log("params.idSessão: "+params.idSessao);
+export default function ChairSelect(){
+    const params = useParams();
 
     const [chairs, setChairs] = React.useState([]);
 
@@ -20,23 +19,42 @@ export default function ChairSelect({idSessao}){
             for(let i=0;i<resposta.data.seats.length+1;i++){
                 arr.push(false);
             }
-            setIsSelected(arr);
         });
 
 	}, []);
 
-    const [isSelected, setIsSelected] = React.useState([]);
     const [ids, setIds] = React.useState([]);
+    const [chairnumbers, setChairnumbers] = React.useState([]);
+
+    
+        
+    function chairnames(element){
+        let tempchairs=[...chairnumbers];
+        for(let i=0;i<chairs.seats.length;i++){
+            if(chairs.seats[i].id===element){
+                console.log("i "+i);
+                tempchairs.push(chairs.seats[i].name);
+                console.log("chairs.seats[i].name "+chairs.seats[i].name);
+            }
+        }
+        setChairnumbers(tempchairs);
+        console.log("chairnumbers "+chairnumbers);
+        
+    }
 
     function selectChair(id){
         let newids=[...ids];
+        for(let i=0;i<newids.length;i++){
+            if(newids[i]===id){
+                newids.splice(i);
+                setIds(newids);
+                return;
+            }
+
+        }
         newids.push(id);
         setIds(newids);
-        console.log("ids: "+ ids);
-
-        let newStates=[...isSelected];
-        newStates[id+1]=true;
-        setIsSelected(newStates);
+        ids.map(chairnames);
     }
 
 	if(chairs.length ===  0) {
@@ -48,7 +66,7 @@ export default function ChairSelect({idSessao}){
         <Text>Selecione o(s) assento(s)</Text>
         <ContainerChairs>
             {chairs.seats.map((seat) => (
-                <Chair object={seat} selected={isSelected[seat.id+1]}  selectChair={selectChair} idCadeira={seat.id} key={seat.id}/>
+                <Chair object={seat} ids={ids}  selectChair={selectChair} idCadeira={seat.id} key={seat.id}/>
             ))}
         </ContainerChairs>
         <ChairInfos>
@@ -65,7 +83,7 @@ export default function ChairSelect({idSessao}){
                  <h3>Indisponível</h3> 
             </Column>
         </ChairInfos>
-        <Forms ids={ids} isSelected={isSelected}/>
+        <Forms title={chairs.movie.title} date={chairs.day.date} time={chairs.name} ids={ids} chairs={chairnumbers}/>
         <Footer>
             <PosterBox >
                 <Poster id={chairs.movie.id} src={chairs.movie.posterURL} alt={chairs.movie.title}/>
@@ -102,7 +120,6 @@ const GreyBall= styled.div`
     border-radius: 12px;
     border: 1px solid #7B8B99;
 `
-    
 
 const YellowBall= styled.div`
     width: 26px;

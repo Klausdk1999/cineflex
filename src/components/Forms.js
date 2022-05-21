@@ -1,14 +1,14 @@
 import { useState } from "react";
 import styled from "styled-components";
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-export default function ContactForm({ids, isSelected}) {
+export default function Forms({ids, title, date, time, chairs}) {
 
+  let navigate = useNavigate();
   const [name, setName] = useState("");
   const [CPF, setCPF] = useState("");
-     
-  let linkObject={ids:[],name:"" ,cpf:""}
+
   function submitData(event) {
     event.preventDefault();
 
@@ -17,16 +17,13 @@ export default function ContactForm({ids, isSelected}) {
         name: name,
         cpf: CPF
     };
-    linkObject=postObject;
-    console.log(postObject);
-
+    
     const promise=axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",postObject);
 
     promise.then(resposta => {
-        console.log(resposta);
-        alert("Mensagem enviada com sucesso!");
         setName("");
         setCPF("");
+        navigate("/sucesso", { state: { name:name , cpf:CPF, title:title , date:date , time:time, chairs: chairs } });
     });
   }
 
@@ -50,11 +47,9 @@ export default function ContactForm({ids, isSelected}) {
             value={CPF}
         />
       </Container>
-      <Link data={linkObject} style={{ textDecoration: 'none' }} to={`/sucesso`}>
-        <OrangeBox onClick={submitData}>
-            Reservar assento(s)
-        </OrangeBox>
-      </Link>
+      <OrangeBox onClick={submitData}>
+        Reservar assento(s)
+      </OrangeBox>
     </FormsContainer>  
   );
 }
