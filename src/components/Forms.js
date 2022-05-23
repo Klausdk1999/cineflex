@@ -74,7 +74,7 @@ const OrangeBox= styled.div`
     text-align: center;
     letter-spacing: 0.04em;
     color: #FFFFFF;
-    margin-top:15px ;
+    margin-top:10px ;
 `
 const FormsContainer = styled.div`
     display: flex;
@@ -87,10 +87,9 @@ const FormsContainer = styled.div`
     font-weight: 400;
     font-size: 18px;
     line-height: 25px;
-
     color: #293845;
     margin: 20px;
-
+    margin-bottom: 130px;
 ` ;
 
 const Container = styled.div`
@@ -98,4 +97,38 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    input{
+    width: 100%;
+    margin-right: 20px;
+    height: 51px;
+    left: 24px;
+    top: 497px;
+    background: #FFFFFF;
+    border: 1px solid #D5D5D5;
+    border-radius: 3px;
+    text-decoration: italic;
+    padding-left: 18px;
+    box-sizing: border-box;
+    
+    ::placeholder{
+        font-style: italic;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+        color: #AFAFAF;
+    }
+    ::-webkit-input-placeholder {
+   font-style: italic;
+    }
+    :-moz-placeholder {
+    font-style: italic;  
+    }
+    ::-moz-placeholder {
+    font-style: italic;  
+    }
+    :-ms-input-placeholder {  
+    font-style: italic; 
+    }
+    }
+    
 ` ;
